@@ -1,14 +1,27 @@
 require 'test'
-require 'answer'
+require 'date'
+# require 'answer'
 
 describe Test do
   let(:answers) do
     [
-      Answer.new(5, 5),
-      Answer.new(7, 7),
-      Answer.new(1, 1)
+      FakeAnswer.new(5, 5),
+      FakeAnswer.new(7, 7),
+      FakeAnswer.new(1, 1)
     ]
   end
+
+class FakeAnswer
+  def initialize(answer, correct_answer)
+    @answer = answer
+    @correct_answer = correct_answer
+  end
+
+  def correct?
+    @answer == @correct_answer
+  end
+end
+
 
   subject(:test) { Test.new(Date.today, answers) }
 
